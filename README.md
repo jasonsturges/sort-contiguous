@@ -1,46 +1,140 @@
-# rollup-starter-lib
+# Sort Contiguous
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/rollup/rollup-starter-lib.svg)](https://greenkeeper.io/)
+Contiguous list sorting, similar to macOS Finder sort.
 
-This repo contains a bare-bones example of how to create a library using Rollup, including importing a module from `node_modules` and converting it from CommonJS.
+For example, an array of: `["N1", "N10", "N100", "N2"]`
 
-We're creating a library called `how-long-till-lunch`, which usefully tells us how long we have to wait until lunch, using the [ms](https://github.com/zeit/ms) package:
+...would sort using the numerical suffix values, resulting in:
+
+    0: "N1"
+    1: "N2"
+    2: "N10"
+    3: "N100"
+
+
+# Getting Started
+
+To install, execute:
+
+    npm i sort-contiguous
+
+Then, import into a project as:
 
 ```js
-console.log('it will be lunchtime in ' + howLongTillLunch());
+import { sortContiguousSuffix } from 'sort-contiguous'
 ```
 
-## Getting started
 
-Clone this repository and install its dependencies:
+# Usage
 
-```bash
-git clone https://github.com/rollup/rollup-starter-lib
-cd rollup-starter-lib
-npm install
+This package includes both sort comparer and utility functions for array sorting.
+
+## Using a Sort Comparer
+
+Use the comparer functions directly in your array `sort()` operations:
+
+### Suffix Comparer
+
+Compare numerical values at the end of a list using the contiguous suffix comparer:
+
+```js
+const list = [
+  "File 1",
+  "File 10",
+  "File 100",
+  "File 2" ];
+
+let sorted = list.sort(contiguousSuffixComparer);
+console.log(sorted);
 ```
 
-`npm run build` builds the library to `dist`, generating three files:
+Outputs:
 
-* `dist/how-long-till-lunch.cjs.js`
-    A CommonJS bundle, suitable for use in Node.js, that `require`s the external dependency. This corresponds to the `"main"` field in package.json
-* `dist/how-long-till-lunch.esm.js`
-    an ES module bundle, suitable for use in other people's libraries and applications, that `import`s the external dependency. This corresponds to the `"module"` field in package.json
-* `dist/how-long-till-lunch.umd.js`
-    a UMD build, suitable for use in any environment (including the browser, as a `<script>` tag), that includes the external dependency. This corresponds to the `"browser"` field in package.json
+```
+0: "File 1"
+1: "File 2"
+2: "File 10"
+3: "File 100"
+```
 
-`npm run dev` builds the library, then keeps rebuilding it whenever the source files change using [rollup-watch](https://github.com/rollup/rollup-watch).
+### Prefix Comparer
 
-`npm test` builds the library, then tests it.
+Compare numerical values at the beginning of a list using the contiguous prefix comparer:
+```js
+import { contiguousPrefixComparer } from 'sort-contiguous'
 
-## Variations
+const list = [
+  "1 File",
+  "10 File",
+  "100 File",
+  "2 File" ];
 
-* [babel](https://github.com/rollup/rollup-starter-lib/tree/babel) — illustrates writing the source code in ES2015 and transpiling it for older environments with [Babel](https://babeljs.io/)
-* [buble](https://github.com/rollup/rollup-starter-lib/tree/buble) — similar, but using [Bublé](https://buble.surge.sh/) which is a faster alternative with less configuration
-* [TypeScript](https://github.com/rollup/rollup-starter-lib/tree/typescript) — uses [TypeScript](https://www.typescriptlang.org/) for type-safe code and transpiling
+let sorted = list.sort(contiguousPrefixComparer);
+console.log(sorted);
+```
+
+Outputs:
+
+```
+0: "1 File"
+1: "2 File"
+2: "10 File"
+3: "100 File"
+```
 
 
+## Using as a Function
 
-## License
+Sort your array by calling either the prefix or suffix sort functions, and passing your array as a parameter.
 
-[MIT](LICENSE).
+### Suffix Sort
+
+Compare numerical values at the end of a list by calling `sortContiguousSuffix` to return the sorted array. 
+
+```js
+import { sortContiguousSuffix } from 'sort-contiguous'
+
+const list = [
+  "File 1",
+  "File 10",
+  "File 100",
+  "File 2" ];
+
+let sorted = sortContiguousSuffix(list);
+console.log(sorted);
+```
+
+Outputs:
+
+```
+0: "File 1"
+1: "File 2"
+2: "File 10"
+3: "File 100"
+```
+
+### Prefix Sort
+
+Compare numerical values at the beginning of a list by calling `sortContiguousPrefix` to return the sorted array.
+
+```js
+import { sortContiguousPrefix } from 'sort-contiguous'
+
+const list = [
+  "1 File",
+  "10 File",
+  "100 File",
+  "2 File" ];
+
+let sorted = sortContiguousPrefix(list);
+console.log(sorted);
+```
+
+Outputs:
+
+```
+0: "1 File"
+1: "2 File"
+2: "10 File"
+3: "100 File"
+```
