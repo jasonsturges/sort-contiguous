@@ -7,8 +7,10 @@
   "license": "ISC",
   "keywords": [
     "sort",
+    "array",
     "list",
-    "contiguous"
+    "contiguous",
+    "compare"
   ],
   "scripts": {
     "build": "rollup -c",
