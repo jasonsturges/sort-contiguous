@@ -1,6 +1,6 @@
 {
   "name": "sort-contiguous",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Contiguous list sorting, similar to macOS Finder sort",
   "author": "Jason Sturges <jason@jsonsturges.com> (https://jasonsturges.com)",
   "homepage": "https://github.com/jasonsturges/sort-contiguous",
