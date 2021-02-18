@@ -94,7 +94,7 @@ Sort your array by calling either the prefix or suffix sort functions, and passi
 
 ### Suffix Sort
 
-Compare numerical values at the end of a list by calling `sortContiguousSuffix` to return the sorted array. 
+Compare numerical values at the end of a list by calling `sortContiguousSuffix()` to return the sorted array:
 
 ```js
 import { sortContiguousSuffix } from 'sort-contiguous';
@@ -119,7 +119,7 @@ Outputs:
 
 ### Prefix Sort
 
-Compare numerical values at the beginning of a list by calling `sortContiguousPrefix` to return the sorted array.
+Compare numerical values at the beginning of a list by calling `sortContiguousPrefix()` to return the sorted array:
 
 ```js
 import { sortContiguousPrefix } from 'sort-contiguous';
