@@ -13,17 +13,17 @@
     "compare"
   ],
   "scripts": {
-    "build": "rollup -c",
     "dev": "rollup -c -w",
-    "test": "node test/test.js",
-    "pretest": "npm run build"
-  },
-  "dependencies": {
-    "rimraf": "^3.0.2"
+    "clean": "rimraf dist",
+    "prebuild": "npm run clean",
+    "build": "rollup -c",
+    "prepublishOnly": "npm run build",
+    "publish": "npm publish --access public"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^11.0.1",
     "@rollup/plugin-node-resolve": "^7.0.0",
+    "rimraf": "^3.0.2",
     "rollup": "^1.29.0"
   },
   "main": "dist/sort-contiguous.cjs.js",
