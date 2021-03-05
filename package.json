@@ -18,7 +18,9 @@
     "test": "node test/test.js",
     "pretest": "npm run build"
   },
-  "dependencies": {},
+  "dependencies": {
+    "rimraf": "^3.0.2"
+  },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^11.0.1",
     "@rollup/plugin-node-resolve": "^7.0.0",
