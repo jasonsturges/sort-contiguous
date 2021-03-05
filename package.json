@@ -20,11 +20,8 @@
   ],
   "scripts": {
     "dev": "rollup -c -w",
-    "clean": "rimraf dist",
-    "prebuild": "npm run clean",
     "build": "rollup -c",
-    "prepublishOnly": "npm run build",
-    "publish": "npm publish --access public"
+    "clean": "rimraf dist"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^11.0.1",
