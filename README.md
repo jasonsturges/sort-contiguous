@@ -66,6 +66,7 @@ Outputs:
 ### Prefix Comparer
 
 Compare numerical values at the beginning of a list using the contiguous prefix comparer:
+
 ```js
 import { contiguousPrefixComparer } from 'sort-contiguous';
 
