@@ -32,6 +32,10 @@ export const contiguousSuffixComparer = (a, b) => {
          a.slice(x.index) - b.slice(y.index);
 }
 
+export const sortContiguous = (list, type) => {
+
+}
+
 /**
  * @param {String[]} list - List to be sorted contiguously.
  */
