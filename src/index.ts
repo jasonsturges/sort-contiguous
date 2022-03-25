@@ -1,3 +1,8 @@
+export enum SortType {
+  PREFIX = "prefix",
+  SUFFIX = "suffix",
+}
+
 /**
  * Prefix regular expression
  * @type {RegExp}
@@ -13,39 +18,53 @@ const regSuffix = /\d+$/;
 /**
  * Sort comparer function for contiguous prefix.
  */
-export const contiguousPrefixComparer = (a, b) => {
+export const contiguousPrefixComparer = (a: string, b: string) => {
   let x = regPrefix.exec(a);
   let y = regPrefix.exec(b);
 
-  return a.slice(x.index).localeCompare(b.slice(y.index)) ||
-         a.slice(0, x.index) - b.slice(0, y.index);
-}
+  return (
+    a.slice(x?.index ?? 0).localeCompare(b.slice(y?.index ?? 0)) || //
+    Number(a.slice(0, x?.index)) - Number(b.slice(0, y?.index))
+  );
+};
 
 /**
  * Sort comparer function for contiguous suffix.
  */
-export const contiguousSuffixComparer = (a, b) => {
+export const contiguousSuffixComparer = (a: string, b: string) => {
   let x = regSuffix.exec(a);
   let y = regSuffix.exec(b);
 
-  return a.slice(0, x.index).localeCompare(b.slice(0, y.index)) ||
-         a.slice(x.index) - b.slice(y.index);
-}
-
-export const sortContiguous = (list, type) => {
-
-}
+  return (
+    a.slice(0, x?.index).localeCompare(b.slice(0, y?.index)) || //
+    Number(a.slice(x?.index ?? 0)) - Number(b.slice(y?.index ?? 0))
+  );
+};
 
 /**
- * @param {String[]} list - List to be sorted contiguously.
+ * Compare numerical values by specifying which comparer type to use.
  */
-export const sortContiguousPrefix = (list) => {
+export const sortContiguous = (list: string[], type: SortType = SortType.SUFFIX) => {
+  switch (type) {
+    case SortType.PREFIX:
+      return sortContiguousPrefix(list);
+
+    default:
+    case SortType.SUFFIX:
+      return sortContiguousSuffix(list);
+  }
+};
+
+/**
+ * Compare numerical values at the beginning of a list using the contiguous prefix comparer.
+ */
+export const sortContiguousPrefix = (list: string[]) => {
   return list.sort(contiguousPrefixComparer);
-}
+};
 
 /**
- * @param {String[]} list - List to be sorted contiguously.
+ * Compare numerical values at the end of a list using the contiguous suffix comparer.
  */
-export const sortContiguousSuffix = (list) => {
+export const sortContiguousSuffix = (list: string[]) => {
   return list.sort(contiguousSuffixComparer);
-}
+};
