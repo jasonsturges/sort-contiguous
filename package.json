@@ -19,6 +19,7 @@
   "main": "dist/cjs/sort-contiguous.js",
   "module": "dist/esm/sort-contiguous.js",
   "browser": "dist/browser/sort-contiguous.js",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
