@@ -4,17 +4,21 @@
   "description": "Contiguous list sorting, similar to macOS Finder sort",
   "author": "Jason Sturges <jason@jsonsturges.com> (https://jasonsturges.com)",
   "homepage": "https://github.com/jasonsturges/sort-contiguous",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jasonsturges/sort-contiguous"
+  },
   "license": "ISC",
   "keywords": [
     "sort",
     "array",
     "list",
     "contiguous",
-    "compare"
+    "comparer"
   ],
-  "main": "dist/sort-contiguous.cjs.js",
-  "module": "dist/sort-contiguous.esm.js",
-  "browser": "dist/sort-contiguous.umd.js",
+  "main": "dist/cjs/sort-contiguous.js",
+  "module": "dist/esm/sort-contiguous.js",
+  "browser": "dist/browser/sort-contiguous.js",
   "files": [
     "dist"
   ],
